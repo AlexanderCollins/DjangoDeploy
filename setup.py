@@ -30,7 +30,7 @@ def main():
         # clone repo
         git_repo = str(input("Enter in the repo to clone: "))
         print_progress_bar(0, 9, prefix='Progress:', suffix='Complete | Cloning Repo', length=50)
-        call(["git", "clone", "{}".format(git_repo)], shell=True, cwd="/home/{}/".format(getpass.getuser()))
+        call(["git", "clone", "{}".format(git_repo)], cwd="/home/{}/".format(getpass.getuser()))
 
         # get repo name
         repo_name = str(input("Please enter the name of the repository,\
