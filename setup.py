@@ -33,12 +33,12 @@ def main():
         call(["git", "clone", "{}".format(git_repo)], cwd="/home/{}/".format(getpass.getuser()))
 
         # get repo name
-        repo_name = str(input("Please enter the name of the repository,\
-        this must be entered correctly as it will be used to setup gunicorn and nginx."))
+        repo_name = str(input("\nPlease enter the name of the repository,\
+        this must be entered correctly as it will be used to setup gunicorn and nginx: "))
 
         # django repo project folder name
         project_folder = str(
-            input("Please enter the name of the folder containing settings.py within your django project")
+            input("Please enter the name of the folder containing settings.py within your django project: ")
         )
 
         print_progress_bar(1, 9, prefix='Progress:', suffix='Complete | Installing system pre-requisites', length=50)
