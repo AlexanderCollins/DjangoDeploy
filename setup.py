@@ -45,6 +45,10 @@ def main():
         call(['sudo', './install_pre_reqs.sh'],
              cwd="/home/{}/djangodeploy".format(getpass.getuser()))
 
+        # ./update.sh
+        call(['sudo', './update.sh'],
+             cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+
         print_progress_bar(2, 9, prefix='Progress:', suffix='Complete | Raising firewall', length=50)
         # ./raise_firewall.sh
         call(['sudo', './raise_firewall.sh'], cwd="/home/{}/djangodeploy".format(getpass.getuser()))
