@@ -17,7 +17,7 @@ This repository is not a full proof solution and is only intended to speed up th
 
 
 # Tests
-To run tests simply call
+To run tests call
 
 ```$ ./test.py```
 
