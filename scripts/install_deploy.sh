@@ -50,6 +50,7 @@ sudo systemctl daemon-reload
 sudo systemctl start gunicorn
 sudo systemctl enable gunicorn
 
+
 # start gunicon on startup
 sudo update-rc.d gunicorn defaults
 
@@ -63,7 +64,7 @@ server {
 
     location = /favicon.ico { access_log off; log_not_found off; }
 
-    location / {
+    location /api/ {
         include proxy_params;
         proxy_pass http://unix:/run/gunicorn/socket;
     }
@@ -72,13 +73,7 @@ server {
 
 sudo ln -s /etc/nginx/sites-available/$2 /etc/nginx/sites-enabled
 
-sudo systemctl daemon-reload
 sudo systemctl start nginx
 sudo systemctl enable nginx
 
-sudo systemctl daemon-reload
-sudo systemctl stop gunicorn
-sudo systemctl start gunicorn
-
-
-echo "You may have to run $ sudo systemctl stop gunicorn && sudo systemctl start gunicorn to ensure gunicorn is running correctly."
+sudo systemctl restart nginx && sudo systemctl restart gunicorn
