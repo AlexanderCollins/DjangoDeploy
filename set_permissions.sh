@@ -1,3 +1,3 @@
 #!/bin/bash
-cd ~/haver_deploy
+cd ~/djangodeploy
 sudo chmod +x *.sh

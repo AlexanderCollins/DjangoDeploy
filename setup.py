@@ -33,8 +33,10 @@ def main():
         call(["git", "clone", "{}".format(git_repo)], cwd="/home/{}/".format(getpass.getuser()))
 
         # get repo name
-        repo_name = str(input("\nPlease enter the name of the repository,\
-        this must be entered correctly as it will be used to setup gunicorn and nginx: "))
+        repo_name = str(
+            input(
+                "\nPlease enter the name of the repository.\
+                (this must be entered correctly as it will be used to setup gunicorn and nginx)\n : "))
 
         # django repo project folder name
         project_folder = str(
@@ -53,8 +55,8 @@ def main():
 
         print_progress_bar(3, 9, prefix='Progress:', suffix='Complete | Installing mysql', length=50)
 
-        mysql_password = str(input("please enter a mysql root user password: "))
-        mysql_database = str(input("please enter a name for your database: "))
+        mysql_password = str(input("\nPlease enter a mysql root user password: "))
+        mysql_database = str(input("\nPlease enter a name for your database: "))
         # ./install_mysql.sh
         call(['sudo', './install_mysql.sh', mysql_password, mysql_database],
              shell=False, cwd="/home/{}/djangodeploy".format(getpass.getuser()))
