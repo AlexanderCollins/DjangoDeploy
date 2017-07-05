@@ -16,6 +16,9 @@ $ ```cd djangodeploy```
 $ ```./setup.py```
 
 
+# Dont forget to place 'SERVERIPADDRESS' as a string in your django project settings.py file for CORS and ALLOWED_HOSTS to be set correctly.
+
+
 # Running Tests
 To run tests call setup.py within the djangodeploy/ folder.
 
