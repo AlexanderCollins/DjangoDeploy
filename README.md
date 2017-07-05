@@ -5,16 +5,16 @@ This repository is not a full proof solution and is only intended to speed up th
 # Getting Started
 1. Clone this repository onto your development/production server using a non root sudo user.
 
-###$ ```git clone https://www.github.com/alexandercollins/djangodeploy.git```
+### $ ```git clone https://www.github.com/alexandercollins/djangodeploy.git```
 
 2. Run the setup file
 
-###$ ```./djangodeploy/setup.py```
+### $ ```./djangodeploy/setup.py```
 
 
 # Running Tests
 To run tests call
-###$ ```./djangodeploy/setup.py```
+### $ ```./djangodeploy/setup.py```
 
 # DjangoDeploy's Future
 In the future I'd like to see this repo used to deploy django applications remotely, integrating into Amazon Web Services, DigitalOcean and Microsoft Azure open APIs.
