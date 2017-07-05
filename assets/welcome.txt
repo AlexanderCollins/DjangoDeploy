@@ -1,0 +1,3 @@
+
+ Welcome to DjangoDeploy. This script set can help you get up and running with your web django application!
+ You can exit this application at with ^C, don't exit this application while it is 'setting up' your environment.
