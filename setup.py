@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 from modules.interactions import *
 from subprocess import call
-import sys
-import getpass
+import sys, getpass, os
+devnull = open(os.devnull, 'w')
 
 
 # https://stackoverflow.com/questions/3173320/text-progress-bar-in-the-console
@@ -43,11 +43,13 @@ def main():
 
         print_progress_bar(1, 9, prefix='Progress:', suffix='Complete | Installing system pre-requisites', length=50)
         # ./install_pre_reqs.sh
-        call(['sudo', './install_pre_reqs.sh'], shell=True, cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+        call(['sudo', './install_pre_reqs.sh'], shell=False,
+             cwd="/home/{}/djangodeploy".format(getpass.getuser()), stdout=devnull)
 
         print_progress_bar(2, 9, prefix='Progress:', suffix='Complete | Raising firewall', length=50)
         # ./raise_firewall.sh
-        call(['sudo', './raise_firewall.sh'], shell=True, cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+        call(['sudo', './raise_firewall.sh'], shell=False, cwd="/home/{}/djangodeploy".format(getpass.getuser()),
+             stdout=devnull)
 
         print_progress_bar(3, 9, prefix='Progress:', suffix='Complete | Installing mysql', length=50)
 
@@ -55,7 +57,7 @@ def main():
         mysql_database = str(input("please enter a name for your database: "))
         # ./install_mysql.sh
         call(['sudo', './install_mysql.sh', mysql_password, mysql_database],
-             shell=True, cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+             shell=False, cwd="/home/{}/djangodeploy".format(getpass.getuser()))
 
         # if str(input("{} [ y/n ]".format("Would you like to install redis?"))).lower() == 'y':
         #     # ./install_redis.sh
@@ -67,33 +69,39 @@ def main():
 
         print_progress_bar(4, 9, prefix='Progress:', suffix='Complete | Raising firewall', length=50)
         # ./install_virtualenv.sh
-        call(['sudo', './install_virtualenv.sh'], shell=True, cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+        call(['sudo', './install_virtualenv.sh'], shell=False, cwd="/home/{}/djangodeploy".format(getpass.getuser()),
+             stdout=devnull)
 
         print_progress_bar(5, 9, prefix='Progress:', suffix='Complete | Installing django project', length=50)
         # ./install_django_project.sh
         call(['sudo', './install_django_project.sh', repo_name],
-             shell=True, cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+             shell=False, cwd="/home/{}/djangodeploy".format(getpass.getuser()),
+             stdout=devnull)
 
         print_progress_bar(6, 9, prefix='Progress:', suffix='Complete | Setting up django database', length=50)
         # django setup database backend
         call(['sudo', './django_setup_mysql.sh', repo_name, project_folder, mysql_password, mysql_database],
-             shell=True, cwd="~/")
+             shell=False, cwd="/home/{}/djangodeploy".format(getpass.getuser()),
+             stdout=devnull)
 
         print_progress_bar(7, 9, prefix='Progress:', suffix='Complete | Migrating django', length=50)
         # django migrate
         call(['sudo', './django_migrate.sh', repo_name],
-             shell=True, cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+             shell=False, cwd="/home/{}/djangodeploy".format(getpass.getuser()),
+             stdout=devnull)
 
         # django cors setup
         print("please add 'SERVERIPADDRESS' as a placeholder as is into the CORS and Allowed_hosts.")
         print_progress_bar(8, 9, prefix='Progress:', suffix='Complete | Setting up django CORS', length=50)
         call(['sudo', './django_cors_setup.sh', repo_name, project_folder],
-             shell=True, cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+             shell=False, cwd="/home/{}/djangodeploy".format(getpass.getuser()),
+             stdout=devnull)
 
         # deploy
         print_progress_bar(9, 9, prefix='Progress:', suffix='Complete | deploying gunicorn and nginx', length=50)
         call(['sudo', './install_deploy.sh', getpass.getuser(), repo_name, project_folder],
-             shell=True, cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+             shell=False, cwd="/home/{}/djangodeploy".format(getpass.getuser()),
+             stdout=devnull)
 
         # status report
         call(['sudo', './status_report.sh'], shell=True, cwd="/home/{}/djangodeploy".format(getpass.getuser()))
