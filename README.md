@@ -7,15 +7,19 @@ This repository is not a full proof solution and is only intended to speed up th
 
 $ ```git clone https://www.github.com/alexandercollins/djangodeploy.git```
 
-2. Run the setup file
+3. Change directory to ~/django deploy
 
-$ ```./djangodeploy/setup.py```
+$ ```cd djangodeploy```
+
+3. Run the setup file
+
+$ ```./setup.py```
 
 
 # Running Tests
-To run tests call
+To run tests call setup.py within the djangodeploy/ folder.
 
-$ ```./djangodeploy/setup.py```
+$ ```./setup.py```
 
 # DjangoDeploy's Future
 In the future I'd like to see this repo used to deploy django applications remotely, integrating into Amazon Web Services, DigitalOcean and Microsoft Azure open APIs.
