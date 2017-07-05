@@ -48,6 +48,7 @@ sudo chmod 746 /etc/systemd/system/gunicorn.service
 # start gunicorn service
 sudo systemctl daemon-reload
 sudo systemctl start gunicorn
+sudo systemctl enable gunicorn
 
 # start gunicon on startup
 sudo update-rc.d gunicorn defaults
@@ -72,7 +73,8 @@ server {
 sudo ln -s /etc/nginx/sites-available/$2 /etc/nginx/sites-enabled
 
 sudo systemctl daemon-reload
-sudo systemctl restart nginx
+sudo systemctl start nginx
+sudo systemctl enable nginx
 
 # start nginx on boot
 sudo update-rc.d nginx defaults
