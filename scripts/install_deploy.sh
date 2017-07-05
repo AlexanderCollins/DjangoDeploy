@@ -76,5 +76,10 @@ sudo systemctl daemon-reload
 sudo systemctl start nginx
 sudo systemctl enable nginx
 
+sudo systemctl daemon-reload
+sudo systemctl stop gunicorn
+sudo systemctl start gunicorn
+
+
 # start nginx on boot
 sudo update-rc.d nginx defaults
