@@ -70,7 +70,7 @@ def main():
 
         print_progress_bar(4, 9, prefix='Progress:', suffix='Complete | Raising firewall', length=50)
         # ./install_virtualenv.sh
-        call(['sudo', './install_virtualenv.sh'], cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+        call(['sudo', './install_virtualenv.sh', getpass.getuser()], cwd="/home/{}/djangodeploy".format(getpass.getuser()))
 
         print_progress_bar(5, 9, prefix='Progress:', suffix='Complete | Installing django project', length=50)
         # ./install_django_project.sh
