@@ -1,4 +1,6 @@
-# DjangoDeploy                                                                              [![Build Status](https://travis-ci.com/AlexanderCollins/DjangoDeploy.svg?token=npni315gymyQYezKVkZU&branch=master)](https://travis-ci.com/AlexanderCollins/DjangoDeploy)
+# DjangoDeploy                                                      [![Build Status](https://travis-ci.com/AlexanderCollins/DjangoDeploy.svg?token=npni315gymyQYezKVkZU&branch=master)](https://travis-ci.com/AlexanderCollins/DjangoDeploy)
+[![django](https://www.djangoproject.com/m/img/badges/djangoproject120x25.gif)](https://www.djangoproject.com/m/img/badges/djangoproject120x25.gif)
+
 DjangoDeploy is a collection of bash scripts which can be used to deploy your django application onto a remote Ubuntu16.04 server with gunicorn and nginx. 
 This repository is not a full proof solution and is only intended to speed up the tedious nature of deploying a django rest_framework application.
 
