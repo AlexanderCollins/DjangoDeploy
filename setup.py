@@ -99,7 +99,7 @@ def main():
              cwd="/home/{}/djangodeploy".format(getpass.getuser()),)
 
         # status report
-        call(['sudo', './scripts/status_report.sh'], shell=True, cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+        call(['sudo', './scripts/status_report.sh'], cwd="/home/{}/djangodeploy".format(getpass.getuser()))
 
     else:
         sys.exit(0)
