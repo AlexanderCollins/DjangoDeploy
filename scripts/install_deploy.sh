@@ -81,5 +81,4 @@ sudo systemctl stop gunicorn
 sudo systemctl start gunicorn
 
 
-# start nginx on boot
-sudo update-rc.d nginx defaults
+echo "You may have to run $ sudo systemctl stop gunicorn && sudo systemctl start gunicorn to ensure gunicorn is running correctly."
