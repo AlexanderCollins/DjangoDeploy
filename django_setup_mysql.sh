@@ -3,7 +3,7 @@
 echo "
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql.connector.django',
+        'ENGINE': 'django.db.backends.mysql',  # 'mysql.connector.django',  # alternative (pure python, use with gevent)
         'NAME': '$4',
         'USER': 'root',
         'PASSWORD': '$3',
