@@ -69,7 +69,6 @@ def main():
              cwd="/home/{}/djangodeploy".format(getpass.getuser()))
 
         # django cors setup
-        print("please add 'SERVERIPADDRESS' as a placeholder as is into the CORS and Allowed_hosts.")
         call(['sudo', './scripts/django_cors_setup.sh', repo_name, project_folder],
              cwd="/home/{}/djangodeploy".format(getpass.getuser()))
 
