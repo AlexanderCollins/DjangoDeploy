@@ -24,7 +24,7 @@ $ ```./setup.py```
 # Running Tests
 To run tests call setup.py within the djangodeploy/ folder.
 
-$ ```./setup.py```
+$ ```./test.py```
 
 # DjangoDeploy's Future
 In the future I'd like to see this repo used to deploy django applications remotely, integrating into Amazon Web Services, DigitalOcean and Microsoft Azure open APIs.
