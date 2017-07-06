@@ -3,49 +3,45 @@ from modules.colours import *
 from modules.asset_paths import ASSETS
 
 
+def fetch_assets(asset_name):
+    with open(ASSETS.get(asset_name), 'r') as f:
+        content = f.readlines()
+        f.close()
+        return content
+
+
 def get_banner():
     # load ascii banner
-    with open(ASSETS.get("banner"), 'r') as f:
-        ascii_banner = f.readlines()
-        f.close()
+    ascii_banner = fetch_assets('banner')
     return light_blue("".join(ascii_banner))
 
 
 def get_website():
     # load website url
-    with open(ASSETS.get("website"), 'r') as f:
-        website_url = f.readlines()
-        f.close()
+    website_url = fetch_assets('website')
     return yellow("".join(website_url))
 
 
 def get_github():
     # load github url
-    with open(ASSETS.get("github"), 'r') as f:
-        github_url = f.readlines()
-        f.close()
+    github_url = fetch_assets('github')
     return yellow("".join(github_url))
 
 
 def get_version():
     # load version number
-    with open(ASSETS.get("version"), 'r') as f:
-        version = f.readlines()
-        f.close()
+    version = fetch_assets('version')
     return white("".join(version))
 
 
 def get_welcome():
     # load welcome message
-    with open(ASSETS.get("welcome"), 'r') as f:
-        welcome_message = f.readlines()
-        f.close()
+    welcome_message = fetch_assets('welcome')
     return white("".join(welcome_message))
 
 
 def get_confirmation():
     # load confirmation message
-    with open(ASSETS.get("confirmation"), 'r') as f:
-        confirmation_message = f.readlines()
-        f.close()
+    confirmation_message = fetch_assets('confirmation')
     return white("".join(confirmation_message))
+
