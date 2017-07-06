@@ -21,12 +21,19 @@ def main():
         call(["git", "clone", "{}".format(git_repo)], cwd="/home/{}/".format(getpass.getuser()))
 
         # get repo name
-        repo_name = str(input("Please enter the name of the django project repo root folder: "))
-
+        repo_name = str(input("\nPlease enter the name of the django project repo root folder: "))
         # django repo project folder name
         project_folder = str(
-            input("Please enter the name of the folder containing settings.py within your django project: ")
+            input(
+                "Please enter the name of the folder containing settings.py within your django project: {}/".format(
+                    repo_name
+                )
+            )
         )
+
+        mysql_password = str(input("\nPlease enter a mysql root user password: "))
+        mysql_database = str(input("\nPlease enter a name for your database: "))
+
 
         # ./install_pre_reqs.sh
         call(['sudo', './scripts/install_pre_reqs.sh'],
@@ -40,8 +47,7 @@ def main():
         call(['sudo', './raise_firewall.sh'], cwd="/home/{}/djangodeploy".format(getpass.getuser()))
 
 
-        mysql_password = str(input("\nPlease enter a mysql root user password: "))
-        mysql_database = str(input("\nPlease enter a name for your database: "))
+
         # ./install_mysql.sh
         call(['sudo', './scripts/install_mysql.sh', mysql_password, mysql_database], cwd="/home/{}/djangodeploy".format(getpass.getuser()))
 
