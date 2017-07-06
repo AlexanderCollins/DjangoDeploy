@@ -30,9 +30,10 @@ def main():
                 )
             )
         )
-
-        mysql_password = str(input("\nPlease enter a mysql root user password: "))
-        mysql_database = str(input("\nPlease enter a name for your database: "))
+        use_mysql = str(input("\nDo you wish to use mysql as your django db backend (defaults db.sqlite)? [ y/n ]"))
+        if use_mysql.lower() == 'y':
+            mysql_password = str(input("\nPlease enter a mysql root user password: "))
+            mysql_database = str(input("\nPlease enter a name for your database: "))
 
 
         # ./install_pre_reqs.sh
@@ -67,8 +68,9 @@ def main():
              cwd="/home/{}/djangodeploy".format(getpass.getuser()))
 
         # django setup database backend
-        call(['sudo', './scripts/django_setup_mysql.sh', repo_name, project_folder, mysql_password, mysql_database],
-             cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+        if use_mysql.lower() == 'y':
+            call(['sudo', './scripts/django_setup_mysql.sh', repo_name, project_folder, mysql_password, mysql_database],
+                 cwd="/home/{}/djangodeploy".format(getpass.getuser()))
 
         # django migrate
         call(['sudo', './scripts/django_migrate.sh', repo_name],
