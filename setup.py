@@ -18,7 +18,7 @@ def main():
 
         # clone repo
         git_repo = str(input("Enter in the repo to clone: "))
-        call(["git", "clone", "{}".format(git_repo)], cwd="/home/{}/".format(getpass.getuser()))
+        call(["git", "clone", "{}".format(git_repo)], cwd="/home/{}/".format(os.getenv("SUDO_USER")))
 
         # get repo name
         repo_name = str(input("\nPlease enter the name of the django project repo root folder: "))
@@ -38,19 +38,19 @@ def main():
 
         # ./install_pre_reqs.sh
         call(['sudo', './scripts/install_pre_reqs.sh'],
-             cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+             cwd="/home/{}/djangodeploy".format(os.getenv("SUDO_USER")))
 
         # ./update.sh
         call(['sudo', './scripts/update.sh'],
-             cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+             cwd="/home/{}/djangodeploy".format(os.getenv("SUDO_USER")))
 
         # ./raise_firewall.sh
-        call(['sudo', './raise_firewall.sh'], cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+        call(['sudo', './raise_firewall.sh'], cwd="/home/{}/djangodeploy".format(os.getenv("SUDO_USER")))
 
 
 
         # ./install_mysql.sh
-        call(['sudo', './scripts/install_mysql.sh', mysql_password, mysql_database], cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+        call(['sudo', './scripts/install_mysql.sh', mysql_password, mysql_database], cwd="/home/{}/djangodeploy".format(os.getenv("SUDO_USER")))
 
         # if str(input("{} [ y/n ]".format("Would you like to install redis?"))).lower() == 'y':
         #     # ./install_redis.sh
@@ -61,31 +61,31 @@ def main():
         #     call(['sudo', './install_node.sh'], shell=True, cwd="~/")
 
         # ./install_virtualenv.sh
-        call(['sudo', './scripts/install_virtualenv.sh', getpass.getuser()], cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+        call(['sudo', './scripts/install_virtualenv.sh', os.getenv("SUDO_USER")], cwd="/home/{}/djangodeploy".format(os.getenv("SUDO_USER")))
 
         # ./install_django_project.sh
         call(['sudo', './scripts/install_django_project.sh', repo_name],
-             cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+             cwd="/home/{}/djangodeploy".format(os.getenv("SUDO_USER")))
 
         # django setup database backend
         if use_mysql.lower() == 'y':
             call(['sudo', './scripts/django_setup_mysql.sh', repo_name, project_folder, mysql_password, mysql_database],
-                 cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+                 cwd="/home/{}/djangodeploy".format(os.getenv("SUDO_USER")))
 
         # django migrate
         call(['sudo', './scripts/django_migrate.sh', repo_name],
-             cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+             cwd="/home/{}/djangodeploy".format(os.getenv("SUDO_USER")))
 
         # django cors setup
         call(['sudo', './scripts/django_cors_setup.sh', repo_name, project_folder],
-             cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+             cwd="/home/{}/djangodeploy".format(os.getenv("SUDO_USER")))
 
         # deploy
-        call(['sudo', './scripts/install_deploy.sh', getpass.getuser(), repo_name, project_folder],
-             cwd="/home/{}/djangodeploy".format(getpass.getuser()),)
+        call(['sudo', './scripts/install_deploy.sh', os.getenv("SUDO_USER"), repo_name, project_folder],
+             cwd="/home/{}/djangodeploy".format(os.getenv("SUDO_USER")),)
 
         # status report
-        call(['sudo', './scripts/status_report.sh'], cwd="/home/{}/djangodeploy".format(getpass.getuser()))
+        call(['sudo', './scripts/status_report.sh'], cwd="/home/{}/djangodeploy".format(os.getenv("SUDO_USER")))
 
     else:
         sys.exit(0)
